@@ -1,0 +1,1 @@
+web: python manage.py migrate && gunicorn piggydjango.wsgi && python3 manage.py collectstatic
