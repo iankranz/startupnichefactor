@@ -17,15 +17,33 @@ def startup_by_id(request, id):
     return JsonResponse(serializer.data)
 
 @csrf_exempt
-def startup_upvote(request, id):
+def startup_add_fire(request, id):
     startup = Startup.objects.get(pk=id)
+    startup.fire_score += 1
     startup.niche_score += 1
     startup.save()
     return JsonResponse({})
 
 @csrf_exempt
-def startup_downvote(request, id):
+def startup_remove_fire(request, id):
     startup = Startup.objects.get(pk=id)
+    startup.fire_score -= 1
     startup.niche_score -= 1
+    startup.save()
+    return JsonResponse({})
+
+@csrf_exempt
+def startup_add_snooze(request, id):
+    startup = Startup.objects.get(pk=id)
+    startup.snooze_score += 1
+    startup.niche_score -= 1
+    startup.save()
+    return JsonResponse({})
+
+@csrf_exempt
+def startup_remove_snooze(request, id):
+    startup = Startup.objects.get(pk=id)
+    startup.snooze_score -= 1
+    startup.niche_score += 1
     startup.save()
     return JsonResponse({})

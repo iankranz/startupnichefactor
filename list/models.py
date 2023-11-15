@@ -8,6 +8,8 @@ class Startup(models.Model):
     summary = models.TextField()
     location = models.CharField(max_length=50)
     niche_score = models.BigIntegerField()
+    fire_score = models.BigIntegerField(default=0)
+    snooze_score = models.BigIntegerField(default=0)
     website_url = models.CharField(max_length=300)
     linkedin_url = models.CharField(max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)
