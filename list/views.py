@@ -6,7 +6,7 @@ from .serializers import StartupSerializer
 
 @csrf_exempt
 def startups(request):
-    startups = Startup.objects.order_by('created_at')
+    startups = Startup.objects.order_by('-niche_score')
     serializer = StartupSerializer(startups, many=True)
     return JsonResponse(serializer.data, safe=False)
 
